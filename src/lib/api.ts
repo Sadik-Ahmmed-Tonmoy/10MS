@@ -36,7 +36,10 @@ export async function fetchProductData(locale: string): Promise<ApiResponse> {
         start_at: "",
         media: [],
         checklist: [],
-        seo: [],
+        seo: {
+          title: "IELTS Course",
+          description: "Complete IELTS preparation course",
+        },
         cta_text: {
           name: "Buy Now",
           value: "enroll",

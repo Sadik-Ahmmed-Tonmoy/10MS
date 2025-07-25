@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CheckCircle, Target } from "lucide-react"
 import type { Section } from "@/types/product"
 

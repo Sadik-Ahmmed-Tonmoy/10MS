@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Layout from "@/components/Layout";
@@ -17,16 +18,16 @@ import CountdownTimer from "@/components/CountdownTimer"; // New import
 import LeadMagnetCard from "@/components/LeadMagnetCard"; // New import
 import { fetchProductData } from "@/lib/api";
 
-interface PageProps {
-  params: {
-    locale: string;
-    slug: string;
-  };
-}
+// interface PageProps {
+//   params: {
+//     locale: string;
+//     slug: string;
+//   };
+// }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale, slug } = params;
-  console.log(slug);
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const { locale } = params;
+
 
   if (!["en", "bn"].includes(locale)) {
     return {
@@ -102,7 +103,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Server Component - No client-side JavaScript needed for initial render
-export default async function ProductPage({ params }: PageProps) {
+export default async function ProductPage({ params }: any) {
   const { locale } = params;
 
   if (!["en", "bn"].includes(locale)) {

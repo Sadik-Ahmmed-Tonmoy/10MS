@@ -1,46 +1,46 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination, Autoplay, Thumbs } from "swiper/modules"
-import { Play, ImageIcon, Video } from "lucide-react"
-import { useState } from "react"
-import type { MediaItem } from "@/types/product"
+import type { MediaItem } from "@/types/product";
+import { motion } from "framer-motion";
+import { Play, Video } from "lucide-react";
+import { useState } from "react";
+import { Autoplay, Navigation, Pagination, Thumbs } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-import "swiper/css/thumbs"
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/thumbs";
 
 interface MediaGalleryProps {
-  media: MediaItem[]
+  media: MediaItem[];
 }
 
 export default function MediaGallery({ media }: MediaGalleryProps) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
-  const [activeVideo, setActiveVideo] = useState<string | null>(null)
+  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   const getYouTubeId = (url: string): string | null => {
-    if (!url || typeof url !== "string") return null
+    if (!url || typeof url !== "string") return null;
 
     // Handle direct YouTube video ID
     if (url.length === 11 && !url.includes("/") && !url.includes("?")) {
-      return url
+      return url;
     }
 
     // Handle full YouTube URLs
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
-    const match = url.match(regExp)
-    return match && match[2].length === 11 ? match[2] : null
-  }
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return match && match[2].length === 11 ? match[2] : null;
+  };
 
   const renderMediaItem = (item: MediaItem, isActive = false) => {
     if (item.resource_type === "video") {
-      const videoId = getYouTubeId(item.resource_value)
+      const videoId = getYouTubeId(item.resource_value);
 
-      if (!videoId) return null
+      if (!videoId) return null;
 
       return (
         <div className="relative aspect-video rounded-xl overflow-hidden group">
@@ -53,11 +53,7 @@ export default function MediaGallery({ media }: MediaGalleryProps) {
               allow="autoplay"
             />
           ) : (
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="relative cursor-pointer h-full"
-              onClick={() => setActiveVideo(videoId)}
-            >
+            <motion.div whileHover={{ scale: 1.02 }} className="relative cursor-pointer h-full" onClick={() => setActiveVideo(videoId)}>
               <img
                 src={item.thumbnail_url || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
                 alt="Video thumbnail"
@@ -79,7 +75,7 @@ export default function MediaGallery({ media }: MediaGalleryProps) {
             </motion.div>
           )}
         </div>
-      )
+      );
     }
 
     if (item.resource_type === "image") {
@@ -95,11 +91,11 @@ export default function MediaGallery({ media }: MediaGalleryProps) {
             IMAGE
           </div> */}
         </div>
-      )
+      );
     }
 
-    return null
-  }
+    return null;
+  };
 
   if (!media || media.length === 0) {
     return (
@@ -117,13 +113,11 @@ export default function MediaGallery({ media }: MediaGalleryProps) {
           <p className="text-gray-500 font-medium">No media available</p>
         </div>
       </motion.div>
-    )
+    );
   }
 
   // Filter media for gallery (exclude certain types if needed)
-  const galleryMedia = media.filter(
-    (item) => item.name === "preview_gallery" || item.name === "thumbnail" || item.name === "sqr_img",
-  )
+  const galleryMedia = media.filter((item) => item.name === "preview_gallery" || item.name === "thumbnail" || item.name === "sqr_img");
 
   return (
     <motion.div
@@ -174,10 +168,7 @@ export default function MediaGallery({ media }: MediaGalleryProps) {
                 {item.resource_type === "video" ? (
                   <div className="relative h-full">
                     <img
-                      src={
-                        item.thumbnail_url ||
-                        `https://img.youtube.com/vi/${getYouTubeId(item.resource_value)}/maxresdefault.jpg`
-                      }
+                      src={item.thumbnail_url || `https://img.youtube.com/vi/${getYouTubeId(item.resource_value)}/maxresdefault.jpg`}
                       alt="Video thumbnail"
                       className="w-full h-full object-cover"
                     />
@@ -186,11 +177,7 @@ export default function MediaGallery({ media }: MediaGalleryProps) {
                     </div>
                   </div>
                 ) : (
-                  <img
-                    src={item.resource_value || "/placeholder.svg"}
-                    alt="Thumbnail"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={item.resource_value || "/placeholder.svg"} alt="Thumbnail" className="w-full h-full object-cover" />
                 )}
               </div>
             </SwiperSlide>
@@ -208,30 +195,30 @@ export default function MediaGallery({ media }: MediaGalleryProps) {
           border-radius: 50%;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
-        
+
         .media-gallery-main .swiper-button-next:after,
         .media-gallery-main .swiper-button-prev:after {
           font-size: 14px;
           font-weight: bold;
         }
-        
+
         .media-gallery-main .swiper-pagination-bullet {
           background: #2563eb;
           opacity: 0.3;
         }
-        
+
         .media-gallery-main .swiper-pagination-bullet-active {
           opacity: 1;
         }
-        
+
         .media-gallery-thumbs .swiper-slide-thumb-active {
           opacity: 1;
         }
-        
+
         .media-gallery-thumbs .swiper-slide-thumb-active > div {
           border: 2px solid #2563eb;
         }
       `}</style>
     </motion.div>
-  )
+  );
 }

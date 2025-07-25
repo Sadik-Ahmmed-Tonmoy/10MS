@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CheckCircle, Users, Clock, Video, BookOpen, Award } from "lucide-react"
+import Image from "next/image"
 
 interface ChecklistItem {
   text: string
@@ -62,7 +63,14 @@ export default function Checklist({ items }: ChecklistProps) {
             style={{ animationDelay: `${index * 100}ms` }}
           >
             {item.icon ? (
-              <img src={item.icon || "/placeholder.svg"} alt="" className="w-5 h-5 mt-0.5 flex-shrink-0" />
+              // <img src={item.icon || "/placeholder.svg"} alt="" className="w-5 h-5 mt-0.5 flex-shrink-0" />
+               <Image
+                src={item.icon || "/placeholder.svg"}
+                alt=""
+                width={20}
+                height={20}
+                className="w-5 h-5 mt-0.5 flex-shrink-0"
+              />
             ) : (
               getItemIcon(renderText(item))
             )}
