@@ -52,7 +52,7 @@ export default function Layout({ children, locale }: LayoutProps) {
               <div className="flex items-center space-x-2 bg-gray-100 rounded-lg p-1">
                 <Globe className="w-4 h-4 text-gray-500" />
                 <Link
-                  href="/en/product"
+                  href="/en/product/ielts-course"
                   className={`px-3 py-1 rounded text-sm font-medium transition-all ${
                     locale === "en"
                       ? "bg-blue-600 text-white shadow-md"
@@ -62,7 +62,7 @@ export default function Layout({ children, locale }: LayoutProps) {
                   EN
                 </Link>
                 <Link
-                  href="/bn/product"
+                  href="/bn/product/ielts-course"
                   className={`px-3 py-1 rounded text-sm font-medium transition-all ${
                     locale === "bn"
                       ? "bg-blue-600 text-white shadow-md"

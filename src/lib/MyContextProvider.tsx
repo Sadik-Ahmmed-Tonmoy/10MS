@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { createContext, useEffect, useState, ReactNode } from "react";
 
 type TContextProvider = {
@@ -8,8 +9,16 @@ type TContextProvider = {
 
 export const ContextProvider = createContext<TContextProvider | null>(null);
 
-const MyContextProvider = ({ children }: {children: ReactNode}) => {
+const MyContextProvider = ({ children }: { children: ReactNode }) => {
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // window.location.href = "/en/product/ielts-course";
+    if (pathname !== "/en/product/ielts-course" && pathname !== "/bn/product/ielts-course") {
+      window.location.href = "/en/product/ielts-course";
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -29,11 +38,7 @@ const MyContextProvider = ({ children }: {children: ReactNode}) => {
 
   const infoProvider: TContextProvider | null = windowWidth !== null ? { windowWidth } : null;
 
-  return (
-    <ContextProvider.Provider value={infoProvider}>
-      {children}
-    </ContextProvider.Provider>
-  );
+  return <ContextProvider.Provider value={infoProvider}>{children}</ContextProvider.Provider>;
 };
 
 export default MyContextProvider;
