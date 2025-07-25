@@ -170,7 +170,7 @@ export default function MediaGallery({ media }: MediaGalleryProps) {
         >
           {galleryMedia.map((item, index) => (
             <SwiperSlide key={index} className="cursor-pointer">
-              <div className="aspect-video rounded-lg overflow-hidden opacity-60 hover:opacity-100 transition-opacity">
+              <div className="aspect-video rounded-lg overflow-hidden opacity-100 hover:opacity-100 transition-opacity">
                 {item.resource_type === "video" ? (
                   <div className="relative h-full">
                     <img
