@@ -1,17 +1,11 @@
-import React from "react";
-import Banner from "./Banner/Banner";
-import LoginWithGoogle from "@/components/LoginWithGoogle";
-import Example from "./Example/Example";
-import { Container } from "@/components/ui-library/container";
+"use client";
+import { useEffect } from "react";
 
 const HomeComponent = () => {
-  return (
-    <Container >
-      <Banner />
-      <Example />
-      <LoginWithGoogle />
-    </Container> 
-  );
+  useEffect(() => {
+    window.location.href = "/en/product/ielts-course";
+  }, []);
+  return <></>;
 };
 
 export default HomeComponent;
