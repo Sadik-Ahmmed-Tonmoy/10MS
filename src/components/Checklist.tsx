@@ -49,13 +49,13 @@ const getItemIcon = (text: string) => {
 // Server Component
 export default function Checklist({ items }: ChecklistProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 sticky top-[32rem] animate-slide-in-right">
+    <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 relative lg:sticky z-30 lg:top-[29rem] animate-slide-in-right">
       <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
         <CheckCircle className="w-6 h-6 mr-2 text-green-500" />
         What You Get
       </h3>
 
-      <ul className="space-y-4">
+      <ul className="space-y-1">
         {items.map((item, index) => (
           <li
             key={index}
@@ -80,7 +80,7 @@ export default function Checklist({ items }: ChecklistProps) {
       </ul>
 
       {/* Additional Benefits */}
-      <div className="mt-6 pt-6 border-t border-gray-200 animate-fade-in" style={{ animationDelay: "800ms" }}>
+      {/* <div className="mt-6 pt-6 border-t border-gray-200 animate-fade-in" style={{ animationDelay: "800ms" }}>
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
           <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
             <Award className="w-4 h-4 mr-2 text-blue-600" />
@@ -92,7 +92,7 @@ export default function Checklist({ items }: ChecklistProps) {
             <li>• Community support</li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

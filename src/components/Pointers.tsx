@@ -1,24 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CheckCircle, Target } from "lucide-react"
-import type { Section } from "@/types/product"
+"use client";
+import type { Section } from "@/types/product";
+import { CheckCircle, Target } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface PointersProps {
-  pointers: Section[]
+  pointers: Section[];
 }
 
 const renderText = (text: any): string => {
   if (typeof text === "string") {
-    return text
+    return text;
   }
   if (typeof text === "object" && text !== null) {
-    if (text.name) return text.name
-    if (text.value) return text.value
-    if (text.title) return text.title
-    if (text.text) return text.text
-    return JSON.stringify(text)
+    if (text.name) return text.name;
+    if (text.value) return text.value;
+    if (text.title) return text.title;
+    if (text.text) return text.text;
+    return JSON.stringify(text);
   }
-  return String(text || "")
-}
+  return String(text || "");
+};
 
 // Server Component
 export default function Pointers({ pointers }: PointersProps) {
@@ -34,25 +36,37 @@ export default function Pointers({ pointers }: PointersProps) {
           {pointer.values && pointer.values.length > 0 && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               {pointer.values.map((value, valueIndex) => (
-                <div
+                <motion.div
                   key={valueIndex}
                   className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 hover:shadow-md hover:translate-x-1 transition-all duration-300 animate-fade-in-up"
-                  style={{ animationDelay: `${valueIndex * 100}ms` }}
+                  // style={{ animationDelay: `${valueIndex * 100}ms` }}
+                  //   initial={{ opacity: 0, y: 20 }}
+                  //   animate={{ opacity: 1, y: 0 }}
+                  //   transition={{ duration: 0.5, delay: valueIndex * 0.1 }}
+                  //   whileHover={{ scale: 1.02, y: -2 }}
+                  // viewport={{ once: false, amount: 0.2 }}
+
+                  initial={{ opacity: 0, y: 50 }} // Start off-screen below
+                  whileInView={{ opacity: 1, y: 0 }} // Animate when in view
+                  viewport={{ once: false, amount: 0 }} // Animate only once when 0% of the element is in view
+                  transition={{
+                    duration: 0.2,
+                    delay: valueIndex * 0.1, // Stagger animation by 0.2s for each item
+                  }}
+                   whileHover={{ scale: 1.02, y: -2 }}
                 >
                   <div className="flex-shrink-0 mt-1">
                     <CheckCircle className="w-5 h-5 text-blue-600 fill-blue-100" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-medium">
-                      {renderText(value)}
-                    </p>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-medium">{renderText(value)}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           )}
         </div>
       ))}
     </div>
-  )
+  );
 }

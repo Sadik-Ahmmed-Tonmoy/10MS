@@ -124,7 +124,7 @@ export default function MediaGallery({ media }: MediaGalleryProps) {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 border border-gray-100 sticky top-24"
+      className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 border border-gray-100 relative lg:sticky lg:top-24"
     >
       <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 flex items-center">
         <Video className="w-5 h-5 sm:w-6 sm:h-6 mr-2 text-blue-600" />

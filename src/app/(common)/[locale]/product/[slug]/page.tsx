@@ -17,6 +17,7 @@ import FAQ from "@/components/FAQ"; // New import
 import CountdownTimer from "@/components/CountdownTimer"; // New import
 import LeadMagnetCard from "@/components/LeadMagnetCard"; // New import
 import { fetchProductData } from "@/lib/api";
+import { cn } from "@/lib/utils";
 
 interface PageProps {
   params: Promise<{
@@ -25,11 +26,9 @@ interface PageProps {
   }>;
 }
 
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
- const resolvedParams = await params;
+  const resolvedParams = await params;
   const { locale } = resolvedParams;
-
 
   if (!["en", "bn"].includes(locale)) {
     return {
@@ -139,26 +138,21 @@ export default async function ProductPage({ params }: PageProps) {
               {/* Left Column */}
               <div className="lg:col-span-2 space-y-6 sm:space-y-8">
                 <Title title={productData.title} />
+                <RightSide galleryMedia={galleryMedia} productData={productData} className="block lg:hidden" />
                 {productData.description && <Description description={productData.description} />}
-                {offers.length > 0 && <CountdownTimer offers={offers} />} {/* New section */}
+                {offers.length > 0 && <CountdownTimer offers={offers} />} 
                 {instructors.length > 0 && <Instructors instructors={instructors} />}
                 {features.length > 0 && <CourseFeatures features={features} />}
                 {pointers.length > 0 && <Pointers pointers={pointers} />}
-                {groupJoinEngagement.length > 0 && <LeadMagnetCard engagement={groupJoinEngagement} />} {/* New section */}
+                {groupJoinEngagement.length > 0 && <LeadMagnetCard engagement={groupJoinEngagement} />} 
                 {exclusiveFeature.length > 0 && <ExclusiveFeature instructors={exclusiveFeature} />}
                 {aboutSections.length > 0 && <CourseDetails aboutSections={aboutSections} />}
-                {testimonials.length > 0 && <Testimonials testimonials={testimonials} />} {/* New section */}
-                {faq.length > 0 && <FAQ faqs={faq} />} {/* New section */}
+                {testimonials.length > 0 && <Testimonials testimonials={testimonials} />} 
+                {faq.length > 0 && <FAQ faqs={faq} />} 
               </div>
 
               {/* Right Column */}
-              <div className="space-y-6">
-                {galleryMedia.length > 0 && <MediaGallery media={galleryMedia} />}
-
-                <CTA ctaText={productData.cta_text} price={1000} />
-
-                {productData.checklist && productData.checklist.length > 0 && <Checklist items={productData.checklist} />}
-              </div>
+              <RightSide galleryMedia={galleryMedia} productData={productData} className="hidden lg:block" />
             </div>
           </div>
         </div>
@@ -177,6 +171,18 @@ export default async function ProductPage({ params }: PageProps) {
     );
   }
 }
+
+const RightSide = ({ className, galleryMedia, productData }: any) => {
+  return (
+    <div className={cn("space-y-6", className)}>
+      {galleryMedia.length > 0 && <MediaGallery media={galleryMedia} />}
+
+      <CTA ctaText={productData.cta_text} price={1000} />
+
+      {productData.checklist && productData.checklist.length > 0 && <Checklist items={productData.checklist} />}
+    </div>
+  );
+};
 
 export async function generateStaticParams() {
   return [{ locale: "en" }, { locale: "bn" }];

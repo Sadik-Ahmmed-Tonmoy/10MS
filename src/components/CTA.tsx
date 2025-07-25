@@ -28,7 +28,7 @@ export default function CTA({ ctaText, price }: CTAProps) {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-2xl p-8 text-white sticky top-96 border border-green-400"
+      className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-2xl p-8 text-white z-20 relative lg:sticky lg:top-24 border border-green-400"
     >
       <div className="text-center">
         {/* Price Section */}
@@ -39,11 +39,11 @@ export default function CTA({ ctaText, price }: CTAProps) {
           className="mb-6"
         >
           <div className="flex items-center justify-center mb-2">
-            <span className="text-sm opacity-75 line-through mr-2">৳2000</span>
+            <span className="text-lg opacity-75 line-through mr-2">৳2000</span>
             <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold">50% OFF</span>
           </div>
           <div className="text-4xl font-bold mb-2">৳{price}</div>
-          <p className="text-green-100 text-sm">Limited Time Offer</p>
+          {/* <p className="text-green-100 text-sm">Limited Time Offer</p> */}
         </motion.div>
 
         {/* CTA Button */}
@@ -58,10 +58,10 @@ export default function CTA({ ctaText, price }: CTAProps) {
 
         {/* Trust Indicators */}
         <div className="space-y-3 text-sm">
-          <div className="flex items-center justify-center space-x-2 text-green-100">
+          {/* <div className="flex items-center justify-center space-x-2 text-green-100">
             <Shield className="w-4 h-4" />
             <span>30-day money-back guarantee</span>
-          </div>
+          </div> */}
           <div className="flex items-center justify-center space-x-2 text-green-100">
             <Clock className="w-4 h-4" />
             <span>Lifetime access</span>

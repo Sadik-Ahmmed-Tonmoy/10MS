@@ -60,7 +60,10 @@ export default function Instructors({ instructors }: InstructorsProps) {
               {instructor.values.map((value, valueIndex) => (
                 <SwiperSlide key={valueIndex}>
                   <motion.div
-                    whileHover={{ y: -5 }}
+                    whileHover={{ 
+scale: 1.01, y: -0 
+
+                     }}
                     className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100"
                   >
                     <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
