@@ -1,15 +1,17 @@
 import type { ApiResponse } from "@/types/product";
 
 export async function fetchProductData(locale: string): Promise<ApiResponse> {
-  console.log(`Fetching data for locale: ${locale}`);
+ 
 
   try {
-    const response = await fetch(`https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=${locale}`, {
+    // const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/ielts-course?lang=${locale}`, 
+    const response = await fetch(`https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=${locale}`, 
+      {
       headers: {
         "X-TENMS-SOURCE-PLATFORM": "web",
         accept: "application/json",
       },
-      cache: "no-store", // For SSR - fetches on every request
+      cache: "no-store", // For SSR 
       // next: { revalidate: 3600 }, // ISR with 1 hour revalidation
     });
 
@@ -18,7 +20,6 @@ export async function fetchProductData(locale: string): Promise<ApiResponse> {
     }
 
     const data = await response.json();
-    console.log(`Successfully fetched data for locale: ${locale}`);
     return data;
   } catch (error) {
     console.error("Error fetching product data:", error);

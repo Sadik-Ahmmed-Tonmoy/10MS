@@ -131,43 +131,39 @@ export default async function ProductPage({ params }: PageProps) {
       productData.media?.filter((item) => item.name === "preview_gallery" || item.name === "thumbnail" || item.name === "sqr_img") || [];
 
     return (
-      <Layout locale={locale}>
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
-              {/* Left Column */}
-              <div className="lg:col-span-2 space-y-6 sm:space-y-8">
-                <Title title={productData.title} />
-                <RightSide galleryMedia={galleryMedia} productData={productData} className="block lg:hidden" />
-                {productData.description && <Description description={productData.description} />}
-                {offers.length > 0 && <CountdownTimer offers={offers} />} 
-                {instructors.length > 0 && <Instructors instructors={instructors} />}
-                {features.length > 0 && <CourseFeatures features={features} />}
-                {pointers.length > 0 && <Pointers pointers={pointers} />}
-                {groupJoinEngagement.length > 0 && <LeadMagnetCard engagement={groupJoinEngagement} />} 
-                {exclusiveFeature.length > 0 && <ExclusiveFeature instructors={exclusiveFeature} />}
-                {aboutSections.length > 0 && <CourseDetails aboutSections={aboutSections} />}
-                {testimonials.length > 0 && <Testimonials testimonials={testimonials} />} 
-                {faq.length > 0 && <FAQ faqs={faq} />} 
-              </div>
-
-              {/* Right Column */}
-              <RightSide galleryMedia={galleryMedia} productData={productData} className="hidden lg:block" />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            {/* Left Column */}
+            <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+              <Title title={productData.title} />
+              <RightSide galleryMedia={galleryMedia} productData={productData} className="block lg:hidden" />
+              {productData.description && <Description description={productData.description} />}
+              {offers.length > 0 && <CountdownTimer offers={offers} />}
+              {instructors.length > 0 && <Instructors instructors={instructors} />}
+              {features.length > 0 && <CourseFeatures features={features} />}
+              {pointers.length > 0 && <Pointers pointers={pointers} />}
+              {exclusiveFeature.length > 0 && <ExclusiveFeature instructors={exclusiveFeature} />}
+              {groupJoinEngagement.length > 0 && <LeadMagnetCard engagement={groupJoinEngagement} />}
+              {aboutSections.length > 0 && <CourseDetails aboutSections={aboutSections} />}
+              {testimonials.length > 0 && <Testimonials testimonials={testimonials} />}
+              {faq.length > 0 && <FAQ faqs={faq} />}
             </div>
+
+            {/* Right Column */}
+            <RightSide galleryMedia={galleryMedia} productData={productData} className="hidden lg:block" />
           </div>
         </div>
-      </Layout>
+      </div>
     );
   } catch {
     return (
-      <Layout locale={locale}>
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
-          <div className="text-center p-8">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Course</h1>
-            <p className="text-gray-600">Please try again later.</p>
-          </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
+        <div className="text-center p-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Course</h1>
+          <p className="text-gray-600">Please try again later.</p>
         </div>
-      </Layout>
+      </div>
     );
   }
 }
@@ -184,6 +180,6 @@ const RightSide = ({ className, galleryMedia, productData }: any) => {
   );
 };
 
-export async function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "bn" }];
-}
+// export async function generateStaticParams() {
+//   return [{ locale: "en" }, { locale: "bn" }];
+// }

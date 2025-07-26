@@ -13,6 +13,7 @@
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-toast": "^1.2.14",
     "@reduxjs/toolkit": "^2.7.0",
+    "antd": "^5.26.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",

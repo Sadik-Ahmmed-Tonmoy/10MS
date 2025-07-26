@@ -3,7 +3,8 @@
 
 import { motion } from "framer-motion"
 import { HelpCircle } from "lucide-react"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Collapse } from "antd"
+import type { CollapseProps } from "antd"
 import type { Section } from "@/types/product"
 
 interface FAQProps {
@@ -35,6 +36,21 @@ export default function FAQ({ faqs }: FAQProps) {
 
   const actualFaqs = faqData[0].values
 
+  const collapseItems: CollapseProps['items'] = actualFaqs.map((faq, index) => ({
+    key: `item-${index}`,
+    label: (
+      <span className="text-base sm:text-lg font-semibold text-gray-800">
+        {renderText(faq.question)}
+      </span>
+    ),
+    children: (
+      <div 
+        className="text-gray-600 prose prose-sm sm:prose-base max-w-none"
+        dangerouslySetInnerHTML={{ __html: renderText(faq.answer) }} 
+      />
+    ),
+  }))
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -48,26 +64,42 @@ export default function FAQ({ faqs }: FAQProps) {
         <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
       </div>
 
-      <Accordion type="single" collapsible className="w-full">
-        {actualFaqs.map((faq, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            <AccordionItem value={`item-${index}`} className="border-b border-gray-200">
-              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-800 hover:no-underline py-4">
-                {renderText(faq.question)}
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-600 prose prose-sm sm:prose-base max-w-none pb-4">
-                <div dangerouslySetInnerHTML={{ __html: renderText(faq.answer) }} />
-              </AccordionContent>
-            </AccordionItem>
-          </motion.div>
-        ))}
-      </Accordion>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        <Collapse
+          items={collapseItems}
+          size="large"
+          ghost
+          expandIconPosition="end"
+          className="faq-collapse"
+        />
+      </motion.div>
+
+      <style jsx global>{`
+        .faq-collapse .ant-collapse-item {
+          border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .faq-collapse .ant-collapse-item:last-child {
+          border-bottom: none;
+        }
+        
+        .faq-collapse .ant-collapse-header {
+          padding: 16px 0;
+        }
+        
+        .faq-collapse .ant-collapse-content-box {
+          padding-bottom: 16px;
+        }
+        
+        .faq-collapse .ant-collapse-expand-icon {
+          color: #2563eb;
+        }
+      `}</style>
     </motion.div>
   )
 }
