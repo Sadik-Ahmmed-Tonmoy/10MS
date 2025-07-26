@@ -11,6 +11,7 @@ import type { Section } from "@/types/product"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
+import { FloatButton } from "antd"
 
 interface InstructorsProps {
   instructors: Section[]
@@ -38,6 +39,7 @@ export default function Instructors({ instructors }: InstructorsProps) {
       viewport={{ once: true }}
       className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
     >
+        <FloatButton.BackTop />
       <div className="flex items-center mb-8">
         <Award className="w-8 h-8 text-blue-600 mr-3" />
         <h2 className="text-2xl font-bold text-gray-900">Meet Your Expert Instructors</h2>

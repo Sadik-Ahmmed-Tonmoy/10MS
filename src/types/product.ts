@@ -73,6 +73,7 @@ export interface Section {
 export interface SEO {
   title?: string
   description?: string
+  keywords?: string[]
 }
 
 export interface CTAText {

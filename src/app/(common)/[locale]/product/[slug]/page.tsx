@@ -1,23 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import Layout from "@/components/Layout";
-import Title from "@/components/Title";
-import Description from "@/components/Description";
-import MediaGallery from "@/components/MediaGallery";
-import Instructors from "@/components/Instructors";
 import Checklist from "@/components/Checklist";
-import CourseFeatures from "@/components/CourseFeatures";
-import Pointers from "@/components/Pointers";
-import ExclusiveFeature from "@/components/ExclusiveFeature";
-import CourseDetails from "@/components/CourseDetails";
-import CTA from "@/components/CTA";
-import Testimonials from "@/components/Testimonials"; // New import
-import FAQ from "@/components/FAQ"; // New import
 import CountdownTimer from "@/components/CountdownTimer"; // New import
+import CourseDetails from "@/components/CourseDetails";
+import CourseFeatures from "@/components/CourseFeatures";
+import CTA from "@/components/CTA";
+import Description from "@/components/Description";
+import ExclusiveFeature from "@/components/ExclusiveFeature";
+import FAQ from "@/components/FAQ"; // New import
+import Instructors from "@/components/Instructors";
 import LeadMagnetCard from "@/components/LeadMagnetCard"; // New import
+import MediaGallery from "@/components/MediaGallery";
+import Pointers from "@/components/Pointers";
+import Testimonials from "@/components/Testimonials"; // New import
+import Title from "@/components/Title";
 import { fetchProductData } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{
@@ -39,18 +38,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   try {
     const response = await fetchProductData(locale);
-    const productData = response.data;
+    const productData = response?.data;
 
-    // Extract SEO data
     const seoTitle = productData.seo?.title || productData.title || "IELTS Course";
     const seoDescription =
       productData.seo?.description ||
       (productData.description ? productData.description.replace(/<[^>]*>/g, "").substring(0, 160) : "Complete IELTS preparation course");
 
+    const seoKeywords = Array.isArray(productData.seo?.keywords)
+      ? productData.seo.keywords
+      : ["IELTS", "English", "Course", "Preparation", "Online Learning", "10 Minute School"];
+
+    const imageUrl = productData.media?.find((m) => m.resource_type === "image")?.resource_value || "/placeholder.svg";
+
+    const productSlug = productData.slug || "ielts-course";
+
     return {
       title: seoTitle,
       description: seoDescription,
-      keywords: "IELTS, English, Course, Preparation, Online Learning, 10 Minute School",
+      keywords: seoKeywords,
       authors: [{ name: "10 Minute School" }],
       creator: "10 Minute School",
       publisher: "10 Minute School",
@@ -68,11 +74,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       openGraph: {
         title: seoTitle,
         description: seoDescription,
-        url: `https://10minuteschool.com/${locale}/product`,
+        url: `https://10minuteschool.com/${locale}/product/${productSlug}`,
         siteName: "10 Minute School",
         images: [
           {
-            url: productData.media?.find((m) => m.resource_type === "image")?.resource_value || "/placeholder.svg",
+            url: imageUrl,
             width: 1200,
             height: 630,
             alt: seoTitle,
@@ -85,10 +91,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         card: "summary_large_image",
         title: seoTitle,
         description: seoDescription,
-        images: [productData.media?.find((m) => m.resource_type === "image")?.resource_value || "/placeholder.svg"],
+        images: [imageUrl],
+        site: "@10minuteschool", // Add your actual handle if you have one
       },
       alternates: {
-        canonical: `https://10minuteschool.com/${locale}/product`,
+        canonical: `https://10minuteschool.com/${locale}/product/${productSlug}`,
         languages: {
           en: "https://10minuteschool.com/en/product",
           bn: "https://10minuteschool.com/bn/product",
@@ -150,7 +157,7 @@ export default async function ProductPage({ params }: PageProps) {
               {faq.length > 0 && <FAQ faqs={faq} />}
             </div>
 
-            {/* Right Column */}
+            {/* Right Column for pc */}
             <RightSide galleryMedia={galleryMedia} productData={productData} className="hidden lg:block" />
           </div>
         </div>

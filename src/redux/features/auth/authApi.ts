@@ -14,7 +14,6 @@ const authApi = baseApi.injectEndpoints({
     }),
     loginWithGoogle: builder.mutation({
       query: (userInfo) => {
-        console.log({ userInfo });
         return {
           url: "google-login",
           method: "POST",
@@ -25,7 +24,6 @@ const authApi = baseApi.injectEndpoints({
     }),
     forgotPassword: builder.mutation({
       query: (userInfo) => {
-        console.log({ userInfo });
         return {
           url: "forgot-password",
           method: "POST",
@@ -36,7 +34,6 @@ const authApi = baseApi.injectEndpoints({
     }),
     resetPassword: builder.mutation({
       query: (userInfo) => {
-        console.log({ userInfo });
         return {
           url: "reset-password",
           method: "POST",

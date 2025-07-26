@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import type React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import logo from "@/assets/icons/footerLogo.png";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
@@ -61,7 +60,7 @@ const Footer = () => {
               </div>
             </motion.div>
             <p className="text-gray-300 leading-relaxed mb-6 max-w-sm">
-              Empowering learners worldwide with quality education that's accessible, engaging, and designed for the modern world.
+              Empowering learners worldwide with quality education that&apos;s accessible, engaging, and designed for the modern world.
             </p>
 
             {/* Newsletter Signup */}
@@ -95,7 +94,7 @@ const Footer = () => {
           <motion.div variants={itemVariants} className="space-y-4">
             <h4 className="font-bold text-lg mb-6 relative">
               <span className="bg-gradient-to-r from-white to-white bg-clip-text text-transparent">Courses</span>
-             <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-red-600 to-red-300 rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-red-600 to-red-300 rounded-full"></div>
             </h4>
             <ul className="space-y-3">
               {["IELTS Preparation", "Professional Skills", "Academic Courses", "Language Learning", "Test Prep"].map((item, index) => (
@@ -131,7 +130,7 @@ const Footer = () => {
           <motion.div variants={itemVariants} className="space-y-4">
             <h4 className="font-bold text-lg mb-6 relative">
               <span className="bg-gradient-to-r from-white to-white bg-clip-text text-transparent">Connect</span>
-           <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-red-600 to-red-300 rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-red-600 to-red-300 rounded-full"></div>
             </h4>
 
             {/* Social Media Grid */}
@@ -186,7 +185,7 @@ const Footer = () => {
         <motion.div variants={itemVariants} className="border-t border-gray-700/50 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-gray-400 text-sm">
-              <p>&copy; 2024 10 Minute School. All rights reserved.</p>
+              <p>&copy; 2025 10 Minute School. All rights reserved.</p>
               <div className="flex space-x-4">
                 <Link href="#" className="hover:text-white transition-colors">
                   Privacy Policy

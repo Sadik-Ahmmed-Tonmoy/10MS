@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import { motion } from "framer-motion"
-import { ShoppingCart, Star, Shield, Clock } from "lucide-react"
+import { motion } from "framer-motion";
+import { Clock, ShoppingCart, Star } from "lucide-react";
 
 interface CTAProps {
   ctaText: string | { name?: string; value?: string } | any
