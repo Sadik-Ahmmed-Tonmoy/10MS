@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import CourseDetails from "@/components/CourseDetails";
 import CourseFeatures from "@/components/CourseFeatures";
 import ExclusiveFeature from "@/components/ExclusiveFeature";
@@ -11,21 +11,19 @@ import Testimonials from "@/components/Testimonials"; // New import
 import Title from "@/components/Title";
 import { ProductData } from "@/types/product";
 
-const Product = ({productData}:  {productData: ProductData}) => {
+const Product = ({ productData }: { productData: ProductData }) => {
+  const instructors = productData.sections?.filter((section) => section.type === "instructors") || [];
+  const features = productData.sections?.filter((section) => section.type === "features") || [];
+  const pointers = productData.sections?.filter((section) => section.type === "pointers") || [];
+  const exclusiveFeature = productData.sections?.filter((section) => section.type === "feature_explanations") || [];
+  const aboutSections = productData.sections?.filter((section) => section.type === "about") || [];
+  const groupJoinEngagement = productData.sections?.filter((section) => section.type === "group_join_engagement") || []; // New filter
+  const testimonials = productData.sections?.filter((section) => section.type === "testimonials") || []; // New filter
+  const faq = productData.sections?.filter((section) => section.type === "faq") || []; // New filter
 
-        const instructors = productData.sections?.filter((section) => section.type === "instructors") || [];
-    const features = productData.sections?.filter((section) => section.type === "features") || [];
-    const pointers = productData.sections?.filter((section) => section.type === "pointers") || [];
-    const exclusiveFeature = productData.sections?.filter((section) => section.type === "feature_explanations") || [];
-    const aboutSections = productData.sections?.filter((section) => section.type === "about") || [];
-    const groupJoinEngagement = productData.sections?.filter((section) => section.type === "group_join_engagement") || []; // New filter
-    const testimonials = productData.sections?.filter((section) => section.type === "testimonials") || []; // New filter
-    const faq = productData.sections?.filter((section) => section.type === "faq") || []; // New filter
-
-    // Filter media for gallery
-    const galleryMedia =
-      productData.media?.filter((item) => item.name === "preview_gallery" || item.name === "thumbnail" || item.name === "sqr_img") || [];
-
+  // Filter media for gallery
+  const galleryMedia =
+    productData.media?.filter((item) => item.name === "preview_gallery" || item.name === "thumbnail" || item.name === "sqr_img") || [];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
