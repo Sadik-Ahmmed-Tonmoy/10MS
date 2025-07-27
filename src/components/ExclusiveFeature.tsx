@@ -27,6 +27,7 @@ export default function ExclusiveFeature({ instructors: sections }: ExclusiveFea
   // Filter for sections with type "feature_explanations"
   const exclusiveFeaturesData = sections.filter((section) => section.type === "feature_explanations")
 
+  console.log(exclusiveFeaturesData?.[0]?.name, "Exclusive Features Data");
   if (exclusiveFeaturesData.length === 0) {
     return null // Don't render if no data
   }
@@ -41,7 +42,9 @@ export default function ExclusiveFeature({ instructors: sections }: ExclusiveFea
     >
       <div className="flex items-center mb-6 sm:mb-8">
         <Award className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 mr-3" />
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Course Exclusive Features</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+          {renderText(exclusiveFeaturesData[0].name || "Course Exclusive Features")}
+        </h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

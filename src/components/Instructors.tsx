@@ -1,34 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination, Autoplay } from "swiper/modules"
-import { Award, BookOpen, Star } from "lucide-react"
-import type { Section } from "@/types/product"
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Award, BookOpen, Star } from "lucide-react";
+import type { Section } from "@/types/product";
 
 // Import Swiper styles
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-import { FloatButton } from "antd"
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { FloatButton } from "antd";
 
 interface InstructorsProps {
-  instructors: Section[]
+  instructors: Section[];
 }
 
 const renderText = (text: any): string => {
   if (typeof text === "string") {
-    return text
+    return text;
   }
   if (typeof text === "object" && text !== null) {
-    if (text.name) return text.name
-    if (text.value) return text.value
-    if (text.title) return text.title
-    return JSON.stringify(text)
+    if (text.name) return text.name;
+    if (text.value) return text.value;
+    if (text.title) return text.title;
+    return JSON.stringify(text);
   }
-  return String(text || "")
-}
+  return String(text || "");
+};
 
 export default function Instructors({ instructors }: InstructorsProps) {
   return (
@@ -39,19 +39,15 @@ export default function Instructors({ instructors }: InstructorsProps) {
       viewport={{ once: true }}
       className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
     >
-        <FloatButton.BackTop />
-     
+      <FloatButton.BackTop />
 
       {instructors.map((instructor, index) => (
         <div key={index} className="mb-8">
-       
-
-
- <div className="flex items-center mb-8">
-        <Award className="w-8 h-8 text-blue-600 mr-3" />
-        {/* <h2 className="text-2xl font-bold text-gray-900">Meet Your Expert Instructors</h2> */}
-           <h3 className="text-xl font-bold text-gray-900">{renderText(instructor.name)}</h3>
-      </div>
+          <div className="flex items-center mb-8">
+            <Award className="w-8 h-8 text-blue-600 mr-3" />
+            {/* <h2 className="text-2xl font-bold text-gray-900">Meet Your Expert Instructors</h2> */}
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{renderText(instructor.name)}</h3>
+          </div>
 
           {instructor.values && instructor.values.length > 0 && (
             <Swiper
@@ -66,10 +62,10 @@ export default function Instructors({ instructors }: InstructorsProps) {
               {instructor.values.map((value, valueIndex) => (
                 <SwiperSlide key={valueIndex}>
                   <motion.div
-                    whileHover={{ 
-scale: 1.01, y: -0 
-
-                     }}
+                    whileHover={{
+                      scale: 1.01,
+                      y: -0,
+                    }}
                     className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100"
                   >
                     <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
@@ -118,22 +114,22 @@ scale: 1.01, y: -0
           border-radius: 50%;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         .instructor-swiper .swiper-button-next:after,
         .instructor-swiper .swiper-button-prev:after {
           font-size: 16px;
           font-weight: bold;
         }
-        
+
         .instructor-swiper .swiper-pagination-bullet {
           background: #2563eb;
           opacity: 0.3;
         }
-        
+
         .instructor-swiper .swiper-pagination-bullet-active {
           opacity: 1;
         }
       `}</style>
     </motion.div>
-  )
+  );
 }

@@ -1,4 +1,3 @@
-import CountdownTimer from "@/components/CountdownTimer"; // New import
 import CourseDetails from "@/components/CourseDetails";
 import CourseFeatures from "@/components/CourseFeatures";
 import ExclusiveFeature from "@/components/ExclusiveFeature";
@@ -123,7 +122,6 @@ export default async function ProductPage({ params }: PageProps) {
     const pointers = productData.sections?.filter((section) => section.type === "pointers") || [];
     const exclusiveFeature = productData.sections?.filter((section) => section.type === "feature_explanations") || [];
     const aboutSections = productData.sections?.filter((section) => section.type === "about") || [];
-    const offers = productData.sections?.filter((section) => section.type === "offers") || []; // New filter
     const groupJoinEngagement = productData.sections?.filter((section) => section.type === "group_join_engagement") || []; // New filter
     const testimonials = productData.sections?.filter((section) => section.type === "testimonials") || []; // New filter
     const faq = productData.sections?.filter((section) => section.type === "faq") || []; // New filter
@@ -141,7 +139,6 @@ export default async function ProductPage({ params }: PageProps) {
               <Title title={productData.title} description={productData.description} />
               <RightSide galleryMedia={galleryMedia} productData={productData} className="block lg:hidden" />
               {/* {productData.description && <Description description={productData.description} />} */}
-              {offers.length > 0 && <CountdownTimer offers={offers} />}
               {instructors.length > 0 && <Instructors instructors={instructors} />}
               {features.length > 0 && <CourseFeatures features={features} />}
               {pointers.length > 0 && <Pointers pointers={pointers} />}

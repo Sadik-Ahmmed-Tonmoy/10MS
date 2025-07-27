@@ -76,7 +76,7 @@ export default function CourseFeatures({ features }: CourseFeaturesProps) {
                       </div>
                     )}
 
-                    <div className="flex items-start mb-3">
+                    <div className="flex items-center mb-3">
                       <div className="mr-3 mt-1 flex-shrink-0">
                         {getFeatureIcon(renderText(value.title), valueIndex)}
                       </div>
