@@ -27,7 +27,6 @@ export default function ExclusiveFeature({ instructors: sections }: ExclusiveFea
   // Filter for sections with type "feature_explanations"
   const exclusiveFeaturesData = sections.filter((section) => section.type === "feature_explanations")
 
-  console.log(exclusiveFeaturesData?.[0]?.name, "Exclusive Features Data");
   if (exclusiveFeaturesData.length === 0) {
     return null // Don't render if no data
   }

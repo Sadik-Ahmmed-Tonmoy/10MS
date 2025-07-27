@@ -50,7 +50,9 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
     >
       <div className="flex items-center mb-6 sm:mb-8">
         <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 mr-3" />
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">What Our Students Say</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+          {renderText(testimonialsData[0].name || "What Our Students Say")}
+        </h2>
       </div>
 
       <Swiper

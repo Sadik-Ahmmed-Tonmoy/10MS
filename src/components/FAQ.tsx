@@ -61,7 +61,9 @@ export default function FAQ({ faqs }: FAQProps) {
     >
       <div className="flex items-center mb-6 sm:mb-8">
         <HelpCircle className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 mr-3" />
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+          {renderText(faqData?.[0]?.name || "Frequently Asked Questions")}
+        </h2>
       </div>
 
       <motion.div

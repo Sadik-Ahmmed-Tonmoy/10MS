@@ -33,7 +33,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const response = await fetchProductData(locale);
     const productData = response?.data;
-    console.log(productData);
     const seoTitle = productData.seo?.title || productData.title || "IELTS Course";
     const seoDescription =
       productData.seo?.description ||
