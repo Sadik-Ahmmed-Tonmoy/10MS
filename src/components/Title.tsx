@@ -1,25 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Star, Users, Clock } from "lucide-react"
 
 interface TitleProps {
-  title: string | { name?: string; value?: string } | any
+  title: string | { name?: string; value?: string } | any;
+  description: string | { name?: string; value?: string } | any;
 }
 
 const renderText = (text: any): string => {
   if (typeof text === "string") {
-    return text
+    return text;
   }
   if (typeof text === "object" && text !== null) {
-    if (text.name) return text.name
-    if (text.value) return text.value
-    if (text.title) return text.title
-    return JSON.stringify(text)
+    if (text.name) return text.name;
+    if (text.value) return text.value;
+    if (text.title) return text.title;
+    return JSON.stringify(text);
   }
-  return String(text || "")
-}
+  return String(text || "");
+};
 
 // Server Component - Rendered on the server
-export default function Title({ title }: TitleProps) {
+export default function Title({ title, description }: TitleProps) {
+  const descriptionText = renderText(description);
   return (
     <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl shadow-2xl p-6 sm:p-8 text-white relative overflow-hidden animate-fade-in">
       {/* Background Pattern */}
@@ -29,11 +30,9 @@ export default function Title({ title }: TitleProps) {
       </div>
 
       <div className="relative z-10">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-          {renderText(title)}
-        </h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">{renderText(title)}</h1>
 
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-blue-100">
+        {/* <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-blue-100">
           <div className="flex items-center space-x-2">
             <Star className="w-4 h-4 sm:w-5 sm:h-5 fill-yellow-400 text-yellow-400" />
             <span className="text-sm sm:text-base font-medium">4.9/5 Rating</span>
@@ -46,8 +45,9 @@ export default function Title({ title }: TitleProps) {
             <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="text-sm sm:text-base font-medium">50+ Hours Content</span>
           </div>
-        </div>
+        </div> */}
+        <div className="prose prose-gray prose-sm sm:prose-base max-w-none leading-relaxed" dangerouslySetInnerHTML={{ __html: descriptionText }} />
       </div>
     </div>
-  )
+  );
 }

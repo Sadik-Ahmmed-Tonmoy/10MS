@@ -1,7 +1,6 @@
 import CountdownTimer from "@/components/CountdownTimer"; // New import
 import CourseDetails from "@/components/CourseDetails";
 import CourseFeatures from "@/components/CourseFeatures";
-import Description from "@/components/Description";
 import ExclusiveFeature from "@/components/ExclusiveFeature";
 import FAQ from "@/components/FAQ"; // New import
 import Instructors from "@/components/Instructors";
@@ -35,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const response = await fetchProductData(locale);
     const productData = response?.data;
-
+    console.log(productData);
     const seoTitle = productData.seo?.title || productData.title || "IELTS Course";
     const seoDescription =
       productData.seo?.description ||
@@ -139,9 +138,9 @@ export default async function ProductPage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Left Column */}
             <div className="lg:col-span-2 space-y-6 sm:space-y-8">
-              <Title title={productData.title} />
+              <Title title={productData.title} description={productData.description} />
               <RightSide galleryMedia={galleryMedia} productData={productData} className="block lg:hidden" />
-              {productData.description && <Description description={productData.description} />}
+              {/* {productData.description && <Description description={productData.description} />} */}
               {offers.length > 0 && <CountdownTimer offers={offers} />}
               {instructors.length > 0 && <Instructors instructors={instructors} />}
               {features.length > 0 && <CourseFeatures features={features} />}
