@@ -1,20 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import Checklist from "@/components/Checklist";
 import CountdownTimer from "@/components/CountdownTimer"; // New import
 import CourseDetails from "@/components/CourseDetails";
 import CourseFeatures from "@/components/CourseFeatures";
-import CTA from "@/components/CTA";
 import Description from "@/components/Description";
 import ExclusiveFeature from "@/components/ExclusiveFeature";
 import FAQ from "@/components/FAQ"; // New import
 import Instructors from "@/components/Instructors";
 import LeadMagnetCard from "@/components/LeadMagnetCard"; // New import
-import MediaGallery from "@/components/MediaGallery";
 import Pointers from "@/components/Pointers";
+import RightSide from "@/components/RightSide";
 import Testimonials from "@/components/Testimonials"; // New import
 import Title from "@/components/Title";
 import { fetchProductData } from "@/lib/api";
-import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -174,18 +170,6 @@ export default async function ProductPage({ params }: PageProps) {
     );
   }
 }
-
-const RightSide = ({ className, galleryMedia, productData }: any) => {
-  return (
-    <div className={cn("space-y-6", className)}>
-      {galleryMedia.length > 0 && <MediaGallery media={galleryMedia} />}
-
-      <CTA ctaText={productData.cta_text} price={1000} />
-
-      {productData.checklist && productData.checklist.length > 0 && <Checklist items={productData.checklist} />}
-    </div>
-  );
-};
 
 // export async function generateStaticParams() {
 //   return [{ locale: "en" }, { locale: "bn" }];
