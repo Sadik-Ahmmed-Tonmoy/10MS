@@ -62,7 +62,7 @@ export default function CountdownTimer({ offers }: CountdownTimerProps) {
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [offers])
+  }, [offers, offerData])
 
   if (!offer) {
     return null

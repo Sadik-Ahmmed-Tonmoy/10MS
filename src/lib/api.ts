@@ -11,8 +11,8 @@ export async function fetchProductData(locale: string): Promise<ApiResponse> {
         "X-TENMS-SOURCE-PLATFORM": "web",
         accept: "application/json",
       },
-      cache: "no-store", // For SSR 
-      // next: { revalidate: 3600 }, // ISR with 1 hour revalidation
+      // cache: "no-store", // For SSR 
+      next: { revalidate: 3600 }, // ISR with 1 hour revalidation
     });
 
     if (!response.ok) {
