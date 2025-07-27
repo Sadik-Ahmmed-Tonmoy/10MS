@@ -42,7 +42,7 @@ export default function Instructors({ instructors }: InstructorsProps) {
       <FloatButton.BackTop />
 
       {instructors.map((instructor, index) => (
-        <div key={index} className="mb-8">
+        <div key={index} className="mb-">
           <div className="flex items-center mb-8">
             <Award className="w-8 h-8 text-blue-600 mr-3" />
             {/* <h2 className="text-2xl font-bold text-gray-900">Meet Your Expert Instructors</h2> */}
