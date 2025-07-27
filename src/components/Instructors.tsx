@@ -40,14 +40,18 @@ export default function Instructors({ instructors }: InstructorsProps) {
       className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
     >
         <FloatButton.BackTop />
-      <div className="flex items-center mb-8">
-        <Award className="w-8 h-8 text-blue-600 mr-3" />
-        <h2 className="text-2xl font-bold text-gray-900">Meet Your Expert Instructors</h2>
-      </div>
+     
 
       {instructors.map((instructor, index) => (
         <div key={index} className="mb-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">{renderText(instructor.name)}</h3>
+       
+
+
+ <div className="flex items-center mb-8">
+        <Award className="w-8 h-8 text-blue-600 mr-3" />
+        {/* <h2 className="text-2xl font-bold text-gray-900">Meet Your Expert Instructors</h2> */}
+           <h3 className="text-xl font-bold text-gray-900">{renderText(instructor.name)}</h3>
+      </div>
 
           {instructor.values && instructor.values.length > 0 && (
             <Swiper
