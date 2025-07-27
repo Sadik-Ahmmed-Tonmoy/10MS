@@ -91,22 +91,26 @@ const NavBar = () => {
                 About
               </Link>
               <div className="flex space-x-2 pt-2">
-                <Link
-                  href="/en/product/ielts-course"
-                  className={`px-3 py-1 rounded text-sm font-medium ${
-                    locale === "en" ? "bg-blue-100 text-blue-800" : "text-gray-600 hover:text-gray-900"
-                  }`}
-                >
-                  English
-                </Link>
-                <Link
-                  href="/bn/product/ielts-course"
-                  className={`px-3 py-1 rounded text-sm font-medium ${
-                    locale === "bn" ? "bg-blue-100 text-blue-800" : "text-gray-600 hover:text-gray-900"
-                  }`}
-                >
-                  বাংলা
-                </Link>
+                <div onClick={() => setIsMenuOpen(false)}>
+                  <Link
+                    href="/en/product/ielts-course"
+                    className={`px-3 py-1 rounded text-sm font-medium ${
+                      locale === "en" ? "bg-blue-100 text-blue-800" : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    English
+                  </Link>
+                </div>
+                <div onClick={() => setIsMenuOpen(false)}>
+                  <Link
+                    href="/bn/product/ielts-course"
+                    className={`px-3 py-1 rounded text-sm font-medium ${
+                      locale === "bn" ? "bg-blue-100 text-blue-800" : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    বাংলা
+                  </Link>
+                </div>
               </div>
             </nav>
           </motion.div>
