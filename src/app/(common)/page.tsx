@@ -1,10 +1,11 @@
-import MyLoading from "@/components/MyLoading";
-import React from "react";
-
 const page = () => {
-  return <div>
-    <MyLoading/>
-  </div>;
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <p className="text-2xl text-gray-700 dark:text-gray-300">
+        Redirecting...
+      </p>
+    </div>
+  );
 };
 
 export default page;
